@@ -1,0 +1,64 @@
+{
+    "http_server": {
+        "host": "0.0.0.0",
+        "port": 9000,
+
+        "log_level": "debug",
+
+        "authentication": {
+            "eviction_check_interval_in_seconds": 60,
+
+            "basic": {
+                "timeout_in_seconds": 3600
+            },
+
+            "openid_connect": {
+                "timeout_in_seconds": 3600,
+                "provider_url": "<OIDC_provider_URL>",
+                "client_id": "<ID_associated_in_OIDC_provider_settings_to_the_iRODS_HTTP_API>",
+		        "client_secret": "<Secret_associated_in_OIDC_provider_settings_to_the_iRODS_HTTP_API>",
+		        "mode": "protected_resource",
+                "redirect_uri": "http://<iRODS_HTTP_API_IP_address>:9000/irods-http-api/0.3.0/authenticate",
+                "irods_user_claim": "preferred_username", // or other oidc claim you want to map the irods user to
+                "tls_certificates_directory": "/etc/ssl/certs", // needed even if running without TLS
+                "state_timeout_in_seconds": 600
+            }
+        },
+
+        "requests": {
+            "threads": 3,
+            "max_size_of_request_body_in_bytes": 8388608,
+            "timeout_in_seconds": 30
+        },
+
+        "background_io": {
+            "threads": 6
+        }
+    },
+
+    "irods_client": {
+        "host": "<hostname_of_iRODS_server>",
+        "port": "<port_listening_on>",
+        "zone": "<the_zone>",
+        "enable_4_2_compatibility": false,
+
+        "proxy_admin_account": {
+            "username": "rods",
+            "password": "password"
+        },
+
+        "connection_pool": {
+            "size": 6,
+            "refresh_timeout_in_seconds": 600,
+            "max_retrievals_before_refresh": 16,
+            "refresh_when_resource_changes_detected": true
+        },
+
+        "max_number_of_parallel_write_streams": 3,
+
+        "max_number_of_bytes_per_read_operation": 8192,
+        "buffer_size_in_bytes_for_write_operations": 8192,
+
+        "max_number_of_rows_per_catalog_query": 15
+    }
+}
