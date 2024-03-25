@@ -16,8 +16,9 @@ This project aims to provide a humble contribution by simplifying the setup and 
 ## Usage:
 
 - Clone this repository to your local machine.
+- update the config.json
 - Run the provided script, which automates the setup and launch process of the iRODS HTTP API.
-- Access the iRODS HTTP API endpoints securely with OAuth authentication.
+
 
 
 ## Requirements:
