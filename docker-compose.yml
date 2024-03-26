@@ -1,9 +1,0 @@
-version: '3.8'
-
-services:
-  irods-http-api:
-    image: ubuntu:latest
-    volumes:
-      - ./launch.docker.sh:/launch.docker.sh
-      - ./config.json:/config.json
-    command: /bin/bash -c "/launch.docker.sh"
